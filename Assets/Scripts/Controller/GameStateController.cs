@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameStateController : MonoBehaviour {
-
+    private EnemyController enemyController;
 	public void Awake ()
     {
         Input.multiTouchEnabled = true;//多點觸碰
+        enemyController = GameFacade.GetInstance().EnemyController;
 	}
     private IEnumerator Start()
     {
@@ -19,11 +20,11 @@ public class GameStateController : MonoBehaviour {
     private IEnumerator PlayPhase()
     {
        
-        yield return null;
+        yield return StartCoroutine(enemyController.Execute());
 
     }
     private IEnumerator EndPhase()
     {
-        yield return null;
+        yield return new WaitForSeconds(1);
     }
 }

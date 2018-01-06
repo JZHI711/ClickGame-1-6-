@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 224246620371519716}
   - component: {fileID: 114550885919400742}
   - component: {fileID: 114515971239528398}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 224236324164591782}
   - component: {fileID: 223509533079701870}
   - component: {fileID: 114865168859878536}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 224688346746086140}
   - component: {fileID: 222963230099914036}
   - component: {fileID: 114799615339118990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 224629095082112050}
   - component: {fileID: 222178815276777910}
   - component: {fileID: 114175948878888674}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224601048437186952}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 224620027448836870}
   - component: {fileID: 222663445180915900}
   - component: {fileID: 114291168579928864}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1706,6 +1706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hurtClip: {fileID: 8300000, guid: fce027b40770a44298a6f5a4233bfb04, type: 3}
   deadClip: {fileID: 8300000, guid: 8c615fd0429f34edf85539d70279360d, type: 3}
+  hitPoint: {fileID: 4210187471445444}
 --- !u!114 &114865168859878536
 MonoBehaviour:
   m_ObjectHideFlags: 1

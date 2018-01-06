@@ -3,14 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
+    private PlayerData playerData;
+    private LevelData levelData;
+    private ParticleSystem[] hitEffects = new ParticleSystem[3];
+    private int hitEffectUseIndex;
+    private void Awake() {
+        playerData = GameFacade.GetInstance().playerData;
+        levelData = GameFacade.GetInstance().levelData;
+        RefreshPlayerData();
+    }
+    private void RefreshPlayerData()
+    {
+        LevelData.LevelSetting curLevelSetting = levelData.CurLevelSetting;
+        playerData.attack = levelData.CurLevelSetting.attack;
+        for (int i = 0; i < hitEffects.Length; i++)
+        {
+            if (hitEffects[i] != null) 
+                Destroy(hitEffects[i].gameObject);
+                hitEffects[i] = Instantiate(curLevelSetting.hitEffect);
+            
+        }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+    public void OnClickEnemy(EnemyBehavior enemy)
+    {
+        enemy.DoDamage(playerData.attack);
+        ParticleSystem hitEffect = hitEffects[hitEffectUseIndex];
+        hitEffect.transform.position = enemy.hitPoint.position;
+        hitEffect.Stop();
+        hitEffect.Play();
+        hitEffectUseIndex = (int)Mathf.Repeat(hitEffectUseIndex + 1, hitEffects.Length);
+    }
 }

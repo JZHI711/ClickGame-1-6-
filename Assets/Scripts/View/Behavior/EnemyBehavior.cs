@@ -14,7 +14,8 @@ public class EnemyBehavior : MonoBehaviour {
     private AudioClip hurtClip;
     [SerializeField]
     private AudioClip deadClip;
-   
+    private PlayerController playerController;
+    public Transform hitPoint;
     public bool IsDead
     {
         get
@@ -28,6 +29,7 @@ public class EnemyBehavior : MonoBehaviour {
         meshFader = GetComponent<MeshFader>();
         audioSource = GetComponent<AudioSource>();
         healthComponent = GetComponent<HealthComponent>();
+        playerController = GameFacade.GetInstance().PlayerController;
     }
 
     private void OnEnable()
@@ -35,7 +37,7 @@ public class EnemyBehavior : MonoBehaviour {
         StartCoroutine(meshFader.FadeIn());
     }
 
-    [ContextMenu("Test Execute")]
+  
    
     public IEnumerator Execute(EnemyData enemyData)
     {
@@ -61,11 +63,22 @@ public class EnemyBehavior : MonoBehaviour {
 
     private void Update()
     {
-        if (healthComponent.IsOver)
+        if (IsDead)
             return;
+#if UNITY_EDITOR //是UnityEditor才執行下面程式
         if(Input.GetButtonDown("Fire1"))
         {
-            DoDamage(10);
+            playerController.OnClickEnemy(this);//需要上面的 playerController = GameFacade.GetInstance().PlayerController;實例化
         }
+#else  //不是UnityEditor才執行下面程式
+        if (Input.touchCount > 0)
+        {
+            for (int i = 0; i < Input.touchCount; i++) {
+                if (Input.GetTouch(i).phase == TouchPhase.Began) {
+                    playerController.OnClickEnemy(this);
+                }
+            }
+        }
+#endif
     }
 }
