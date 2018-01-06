@@ -14,9 +14,21 @@ public class GameFacade : MonoBehaviour
             {
                 throw new System.Exception("GameFacade不存在於場景中，請在場景中添加");
             }
+            instance.Initialize();
         }
         return instance;
     }
 
     public StageData[] stageDatas;
+    public LevelData levelData;
+    public PlayerData playerData;
+    public GameStateData gameStateData;
+    private void Initialize()
+    {
+        playerData = new PlayerData();
+        gameStateData = new GameStateData();
+    }
+    private void Awake() {
+        GetInstance();
+    }
 }

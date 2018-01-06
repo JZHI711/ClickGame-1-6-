@@ -14,7 +14,7 @@ public class EnemyBehavior : MonoBehaviour {
     private AudioClip hurtClip;
     [SerializeField]
     private AudioClip deadClip;
-    public EnemyData enemyData;
+   
     public bool IsDead
     {
         get
@@ -36,11 +36,7 @@ public class EnemyBehavior : MonoBehaviour {
     }
 
     [ContextMenu("Test Execute")]
-    private void TestExecute()
-    {
-        StartCoroutine(Execute(enemyData));
-    }
-
+   
     public IEnumerator Execute(EnemyData enemyData)
     {
         healthComponent.Init(enemyData.health);
